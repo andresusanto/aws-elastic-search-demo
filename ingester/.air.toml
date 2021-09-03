@@ -1,0 +1,10 @@
+root="."
+tmp_dir="tmp"
+
+[build]
+cmd = "go build -o ./tmp/main ./cmd/server"
+bin = "tmp/main"
+full_bin = "DEBUG=true DEVELOP=true ./tmp/main"
+
+[misc]
+clean_on_exit = true
