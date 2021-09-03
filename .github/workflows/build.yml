@@ -12,7 +12,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: event-ingester
+  IMAGE_NAME: ${{ github.repository_owner }}/es-event-ingester
 
 jobs:
   build:
