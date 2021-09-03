@@ -1,5 +1,1 @@
 package healthcheck
-
-func RegisterHandler() {
-
-}
