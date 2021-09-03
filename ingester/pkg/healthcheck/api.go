@@ -1,1 +1,5 @@
 package healthcheck
+
+func RegisterHandler() {
+
+}
