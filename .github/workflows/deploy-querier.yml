@@ -9,6 +9,9 @@ on:
     branches: [main]
     paths:
       - 'querier/**'
+env:
+  STAGE: prod
+  REGION: ap-southeast-2
 
 jobs:
   build:
@@ -27,11 +30,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Serverless Deploy
-        uses: dhollerbach/actions.serverless-with-python-requirements@2.0
+      - name: Install Serverless
+        run: |
+          npm i serverless -g
+      - name: Deploy
         working-directory: ./querier
-        with:
-          args: '--stage prod'
+        run: |
+          npm i
+          sls deploy --region=${{ env.REGION }} --stage=${{ env.STAGE }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
