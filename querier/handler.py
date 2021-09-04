@@ -53,5 +53,6 @@ def querier(event, context):
     num_users = res["aggregations"]["num_users"]["value"]
     num_events = res["aggregations"]["num_events"]["value"]
 
+    print(f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users')
     logger.info(f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users')
 
