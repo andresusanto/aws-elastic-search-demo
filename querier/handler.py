@@ -33,5 +33,4 @@ def query(event, context):
     logger.info('result')
     logger.info(res)
 
-
     return res
