@@ -1,4 +1,4 @@
-import json
+import datetime
 import os
 import logging
 from elasticsearch import Elasticsearch, RequestsHttpConnection
@@ -12,25 +12,46 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 credentials = boto3.Session().get_credentials()
 awsauth = AWS4Auth(
-    credentials.access_key, 
-    credentials.secret_key, 
-    region, 
-    'es', 
+    credentials.access_key,
+    credentials.secret_key,
+    region,
+    'es',
     session_token=credentials.token
 )
 es = Elasticsearch(
-    hosts = [{'host': esHost, 'port': 443}],
-    http_auth = awsauth,
-    use_ssl = True,
-    verify_certs = True,
-    connection_class = RequestsHttpConnection
+    hosts=[{'host': esHost, 'port': 443}],
+    http_auth=awsauth,
+    use_ssl=True,
+    verify_certs=True,
+    connection_class=RequestsHttpConnection
 )
 
-def query(event, context):
-    logger.info('querying es...')
-    res = es.search(index='events', body={"query": {"match_all": {}}})
 
-    logger.info('result')
-    logger.info(res)
+def query():
+    end = datetime.datetime.utcnow().replace(second=0, microsecond=0)
+    start = end - datetime.timedelta(minutes=3)
 
-    return res
+    res = es.search(
+        index='events',
+        body={
+            "size": 0,
+            "query": {
+                "range": {
+                    "created_at": {
+                        "gte": start.isoformat(),
+                        "lt": end.isoformat(),
+                    }
+                }
+            },
+            "aggs": {
+                "num_users": {"cardinality": {"field": "user_id"}},
+                "num_events": {"value_count": {"field": "user_id"}}
+            }
+        }
+    )
+
+    num_users = res["aggregations"]["num_users"]["value"]
+    num_events = res["aggregations"]["num_events"]["value"]
+
+    logger.info(f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users')
+
