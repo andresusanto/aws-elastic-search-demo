@@ -27,7 +27,7 @@ es = Elasticsearch(
 )
 
 
-def query():
+def querier(event, context):
     end = datetime.datetime.utcnow().replace(second=0, microsecond=0)
     start = end - datetime.timedelta(minutes=3)
 

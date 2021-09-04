@@ -15,7 +15,7 @@ provider:
 
 functions:
   fn:
-    handler: handler.query
+    handler: handler.querier
     events:
       - schedule:
           rate: rate(10 minutes)
