@@ -8,8 +8,9 @@ import boto3
 region = os.environ['REGION']
 esHost = os.environ['ES_HOST']
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 credentials = boto3.Session().get_credentials()
 awsauth = AWS4Auth(
     credentials.access_key,
