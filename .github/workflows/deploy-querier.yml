@@ -1,0 +1,37 @@
+name: deploy-querier
+on:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+    paths:
+      - 'querier/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'querier/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Serverless Deploy
+        uses: dhollerbach/actions.serverless-with-python-requirements@2.0
+        working-directory: ./querier
+        with:
+          args: '--stage prod'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
