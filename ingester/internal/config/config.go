@@ -17,7 +17,7 @@ type Config struct {
 // New returns the application config
 func New() *Config {
 	c := &Config{}
-	err := envconfig.Process("jobcontroller", c)
+	err := envconfig.Process("", c)
 
 	if err != nil {
 		log.Fatal().Err(err).Msg("Environment config cannot be loaded")
