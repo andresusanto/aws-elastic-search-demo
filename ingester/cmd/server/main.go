@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/andresusanto/aws-elastic-search-demo/ingester/internal/config"
 	"github.com/andresusanto/aws-elastic-search-demo/ingester/internal/es"
 	"github.com/andresusanto/aws-elastic-search-demo/ingester/internal/logging"
@@ -25,5 +27,5 @@ func main() {
 
 	events.RegisterHandler(r, events.NewService(events.NewRepository(es)))
 
-	r.Run(":8080")
+	r.Run(fmt.Sprintf(":%d", cfg.Port))
 }
