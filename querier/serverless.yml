@@ -1,0 +1,27 @@
+service: querier
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - es:ESHttpGet
+      Resource: ${ssm:/es/events/arn}/*
+
+functions:
+  fn:
+    handler: handler.query
+    events:
+      - schedule:
+          rate: rate(10 minutes)
+          enabled: false
+    environment:
+      REGION: ${self:provider.region}
+      ES_HOST: ${ssm:/es/events/host}
+
+plugins:
+  - serverless-python-requirements
