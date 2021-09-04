@@ -20,7 +20,7 @@ func main() {
 	cfg := config.New()
 	r := gin.New()
 
-	logging.Setup(true, true)
+	logging.Setup(cfg.Debug, cfg.Develop)
 	logging.Attach(r)
 
 	es, err := es.NewClient(cfg)

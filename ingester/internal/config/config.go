@@ -12,6 +12,8 @@ type Config struct {
 	Region       string `default:"local" split_words:"true"`
 	ESEndpoint   string `default:"http://localhost:9200" split_words:"true"`
 	SignESClient bool   `default:"false" split_words:"true"`
+	Develop      bool   `default:"false" split_words:"true"`
+	Debug        bool   `default:"false" split_words:"true"`
 }
 
 // New returns the application config
