@@ -5,6 +5,7 @@ on:
     tags: ["v*.*.*"]
     paths:
       - 'querier/**'
+      - '.github/workflows/deploy-querier.yml'
 
 env:
   STAGE: prod

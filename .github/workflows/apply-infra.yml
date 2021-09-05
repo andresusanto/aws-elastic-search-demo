@@ -5,10 +5,12 @@ on:
     tags: ["v*.*.*"]
     paths:
       - 'infrastructure/**'
+      - '.github/workflows/apply-infra.yml'
   pull_request:
     branches: [main]
     paths:
       - 'infrastructure/**'
+      - '.github/workflows/apply-infra.yml'
 
 env:
   REGION: ap-southeast-2
@@ -48,7 +50,7 @@ jobs:
         id: plan
         run: terraform plan -no-color -var-file="envs/prod.tfvars"
 
-      - name: Terraform Plan
+      - name: Terraform Apply
         if: github.event_name != 'pull_request'
         id: apply
-        run: terraform apply -no-color -var-file="envs/prod.tfvars"
+        run: terraform apply -no-color -auto-approve -var-file="envs/prod.tfvars"

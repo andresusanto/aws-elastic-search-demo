@@ -5,10 +5,12 @@ on:
     tags: ["v*.*.*"]
     paths:
       - 'ingester/**'
+      - '.github/workflows/build-ingester.yml'
   pull_request:
     branches: [main]
     paths:
       - 'ingester/**'
+      - '.github/workflows/build-ingester.yml'
 
 env:
   REGISTRY: ghcr.io
