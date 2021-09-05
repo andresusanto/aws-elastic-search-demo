@@ -4,7 +4,6 @@ Welcome! This project is a demonstration of event ingestion and processing using
 
 [![image](https://user-images.githubusercontent.com/7076809/132135012-f6119ec7-0afa-4858-970f-6b51a323640e.png)](./infrastructure/modules/elasticsearch/README.md)
 
-
 ### Data Ingestion &middot; [![Build](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml/badge.svg)](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml)
 
 **Ingester** is a microservice that ingest user-click events via HTTP requests into ElasticSearch. It is written in Go and deployed on AWS ECS Fargate.
@@ -27,7 +26,7 @@ All the infrastructure used by this project is managed by Terraform.
 
 A script in `/scripts` folder is available to generate fake events.
 
-[More about the script](./querier/README.md)
+[More about the script](./scripts/README.md)
 
 ### Index Strategy
 

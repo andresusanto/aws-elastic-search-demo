@@ -1,0 +1,1 @@
+# Infrastructure &middot; [![Build](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/apply-infra.yml/badge.svg)](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/apply-infra.yml)

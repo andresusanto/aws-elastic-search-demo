@@ -1,4 +1,4 @@
-# Querier
+# Querier &middot; [![Build](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/deploy-querier.yml/badge.svg)](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/deploy-querier.yml)
 
 Querier is responsible for performing ElasticSearch queries. In short, this app:
 

@@ -1,4 +1,4 @@
-# Ingester
+# Ingester &middot; [![Build](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml/badge.svg)](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml)
 
 Ingester is responsible for ingesting events into ElasticSearch. In short, this app:
 
