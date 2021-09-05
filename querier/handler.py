@@ -25,7 +25,7 @@ awsauth = AWS4Auth(
     credentials.secret_key,
     region,
     'es',
-    session_token=credentials.token)
+    session_token=credentials.token) if credentials else None
 es = Elasticsearch(
     hosts=[{'host': esHost, 'port': 443}],
     http_auth=awsauth,
