@@ -1,15 +1,23 @@
-import datetime
 import os
+import datetime
+import boto3
 import logging
+from pythonjsonlogger import jsonlogger
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
-import boto3
+
 
 region = os.environ['REGION']
 esHost = os.environ['ES_HOST']
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+json_handler = logging.StreamHandler()
+formatter = jsonlogger.JsonFormatter(
+    fmt='%(asctime)s %(levelname)s %(name)s %(message)s')
+json_handler.setFormatter(formatter)
+logger.addHandler(json_handler)
+logger.removeHandler(logger.handlers[0])
 
 credentials = boto3.Session().get_credentials()
 awsauth = AWS4Auth(
@@ -55,4 +63,5 @@ def querier(event, context):
     num_events = res["aggregations"]["num_events"]["value"]
 
     logger.info(
-        f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users')
+        f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users',
+        extra={"start": start.isoformat(), "end": end.isoformat(), "num_events": num_events, "num_users": num_users})
