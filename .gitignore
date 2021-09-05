@@ -25,6 +25,7 @@ override.tf.json
 node_modules
 
 # Distribution / packaging
+__pycache__
 .Python
 env/
 build/

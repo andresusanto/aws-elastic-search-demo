@@ -31,7 +31,7 @@ func (h *handler) create(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Create(c.Request.Context(), req); err != nil {
+	if err := h.service.Create(c.Request.Context(), &req); err != nil {
 		reqID := requestid.Get(c)
 		log.Error().Err(err).Str("reqId", reqID).Msg("unknown error occured when creating event")
 		c.Status(http.StatusInternalServerError)

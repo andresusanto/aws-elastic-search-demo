@@ -14,18 +14,19 @@ type Handler interface {
 
 // RegisterHandler sets up the routing of the HTTP handlers.
 func RegisterHandler(r *gin.Engine) Handler {
-	h := &handler{true}
+	h := &handler{true, 10 * time.Second}
 	r.GET("/health", h.get)
 	return h
 }
 
 type handler struct {
-	ok bool
+	ok             bool
+	gracefulPeriod time.Duration
 }
 
 func (h *handler) Shutdown() {
 	h.ok = false
-	time.Sleep(10 * time.Second)
+	time.Sleep(h.gracefulPeriod)
 }
 
 func (h *handler) get(c *gin.Context) {

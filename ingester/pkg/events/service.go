@@ -7,7 +7,7 @@ import (
 
 // Service encapsulates usecase logic for events
 type Service interface {
-	Create(ctx context.Context, req CreateEventRequest) error
+	Create(ctx context.Context, req *CreateEventRequest) error
 }
 
 type service struct {
@@ -20,7 +20,7 @@ func NewService(r Repository) Service {
 }
 
 // Create creates a new event.
-func (s *service) Create(ctx context.Context, req CreateEventRequest) error {
+func (s *service) Create(ctx context.Context, req *CreateEventRequest) error {
 	event := &Event{
 		req.UserID,
 		req.Type,
