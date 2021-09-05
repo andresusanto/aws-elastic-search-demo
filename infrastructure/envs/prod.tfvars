@@ -5,4 +5,4 @@ es_instance_type  = "t3.small.elasticsearch"
 create_monitoring = true
 
 ingester_container_name = "ghcr.io/andresusanto/es-event-ingester"
-ingester_container_tag  = "sha-03a909f"
+ingester_container_tag  = "sha-fc0ea56"

@@ -20,7 +20,7 @@ Welcome! This project is a demonstration of event ingestion and processing using
 
 All the infrastructure used by this project is managed by Terraform.
 
-[More about infrastructure](./querier/README.md)
+[More about infrastructure](./infrastructure/README.md)
 
 ### Data Producing
 
