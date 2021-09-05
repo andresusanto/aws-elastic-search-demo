@@ -1,3 +1,3 @@
 variable "fqdn" {
-    type = string
+  type = string
 }

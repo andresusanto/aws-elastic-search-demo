@@ -1,5 +1,5 @@
 module "es" {
-  source  = "lgallard/elasticsearch/aws"
+  source = "lgallard/elasticsearch/aws"
 
   domain_name           = "es-events"
   elasticsearch_version = "7.1"

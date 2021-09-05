@@ -2,11 +2,11 @@ module "alb" {
   source  = "umotif-public/alb/aws"
   version = "~> 2.0"
 
-  name_prefix                   = "es-ingester-xlb"
-  load_balancer_type            = "application"
-  internal                      = false
-  vpc_id                        = data.aws_vpc.default.id
-  subnets                       = data.aws_subnet_ids.all.ids
+  name_prefix        = "es-ingester-xlb"
+  load_balancer_type = "application"
+  internal           = false
+  vpc_id             = data.aws_vpc.default.id
+  subnets            = data.aws_subnet_ids.all.ids
 }
 
 resource "aws_lb_listener" "alb_80" {

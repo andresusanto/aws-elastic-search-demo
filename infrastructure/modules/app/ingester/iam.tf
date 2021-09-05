@@ -3,7 +3,7 @@ resource "aws_iam_policy" "policy" {
   description = "Allow Elastic Search Access"
 
   policy = templatefile("${path.module}/iam-policy.json.tmpl", {
-      arn = var.es_arn
+    arn = var.es_arn
   })
 }
 

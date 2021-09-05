@@ -3,11 +3,11 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 module "ingester" {
-  source = "umotif-public/ecs-fargate/aws"
+  source  = "umotif-public/ecs-fargate/aws"
   version = "~> 6.1.0"
 
   name_prefix = "es-ingester"
-  
+
   vpc_id             = data.aws_vpc.default.id
   private_subnet_ids = data.aws_subnet_ids.all.ids
   cluster_id         = aws_ecs_cluster.cluster.id
@@ -21,13 +21,13 @@ module "ingester" {
   task_definition_cpu    = var.container_cpu
   task_definition_memory = var.container_memory
 
-  task_container_port         = 8080
-  task_container_environment  = {
-    PORT            = "8080"
-    GIN_MODE        = "release"
-    REGION          = var.region
-    SIGN_ES_CLIENT  = "true"
-    ES_ENDPOINT     = "https://${var.es_endpoint}"
+  task_container_port = 8080
+  task_container_environment = {
+    PORT           = "8080"
+    GIN_MODE       = "release"
+    REGION         = var.region
+    SIGN_ES_CLIENT = "true"
+    ES_ENDPOINT    = "https://${var.es_endpoint}"
   }
 
   target_groups = [
