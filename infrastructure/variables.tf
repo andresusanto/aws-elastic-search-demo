@@ -21,3 +21,7 @@ variable "ingester_container_name" {
 variable "ingester_container_tag" {
   type = string
 }
+
+variable "create_monitoring" {
+  type = bool
+}

@@ -27,6 +27,8 @@ module "app_ingester" {
 }
 
 module "monitoring" {
+  count = var.create_monitoring ? 1 : 0
+
   source = "./modules/monitoring"
   stage  = var.stage
   region = var.region
