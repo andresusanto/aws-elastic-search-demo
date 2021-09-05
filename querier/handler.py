@@ -8,7 +8,7 @@ from requests_aws4auth import AWS4Auth
 
 
 region = os.environ['REGION']
-esHost = os.environ['ES_HOST']
+es_host = os.environ['ES_HOST']
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -27,7 +27,7 @@ awsauth = AWS4Auth(
     'es',
     session_token=credentials.token) if credentials else None
 es = Elasticsearch(
-    hosts=[{'host': esHost, 'port': 443}],
+    hosts=[{'host': es_host, 'port': 443}],
     http_auth=awsauth,
     use_ssl=True,
     verify_certs=True,

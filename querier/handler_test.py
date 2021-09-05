@@ -31,7 +31,7 @@ class TestQuerier(unittest.TestCase):
         logger.side_effect = mock_logger
 
         querier(None, None)
-        
+
         self.assertEqual(search.called, True)
         self.assertEqual(logger.called, True)
 
