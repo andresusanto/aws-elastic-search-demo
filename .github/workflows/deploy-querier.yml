@@ -5,10 +5,7 @@ on:
     tags: ["v*.*.*"]
     paths:
       - 'querier/**'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'querier/**'
+
 env:
   STAGE: prod
   REGION: ap-southeast-2
