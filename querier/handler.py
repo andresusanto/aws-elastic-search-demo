@@ -25,15 +25,13 @@ awsauth = AWS4Auth(
     credentials.secret_key,
     region,
     'es',
-    session_token=credentials.token
-)
+    session_token=credentials.token)
 es = Elasticsearch(
     hosts=[{'host': esHost, 'port': 443}],
     http_auth=awsauth,
     use_ssl=True,
     verify_certs=True,
-    connection_class=RequestsHttpConnection
-)
+    connection_class=RequestsHttpConnection)
 
 
 def querier(event, context):
@@ -62,6 +60,8 @@ def querier(event, context):
     num_users = res["aggregations"]["num_users"]["value"]
     num_events = res["aggregations"]["num_events"]["value"]
 
-    logger.info(
-        f'from {start.isoformat()} to {end.isoformat()} we have {num_events} events from {num_users} users',
-        extra={"start": start.isoformat(), "end": end.isoformat(), "num_events": num_events, "num_users": num_users})
+    logger.info('querier metric', extra={
+        "start": start.isoformat(),
+        "end": end.isoformat(),
+        "num_events": num_events,
+        "num_users": num_users})
