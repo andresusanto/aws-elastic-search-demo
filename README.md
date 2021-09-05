@@ -1,8 +1,9 @@
-# AWS Elastic Search Demo
+# AWS Elastic Search Demo &middot; [![License](https://img.shields.io/github/license/andresusanto/aws-elastic-search-demo.svg)](https://github.com/andresusanto/aws-elastic-search-demo/blob/main/LICENSE)
 
 Welcome! This project is a demonstration of event ingestion and processing using ElasticSearch on AWS.
 
-[![License](https://img.shields.io/github/license/andresusanto/aws-elastic-search-demo.svg)](https://github.com/andresusanto/aws-elastic-search-demo/blob/main/LICENSE)
+[![image](https://user-images.githubusercontent.com/7076809/132135012-f6119ec7-0afa-4858-970f-6b51a323640e.png)](./infrastructure/modules/elasticsearch/README.md)
+
 
 ### Data Ingestion &middot; [![Build](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml/badge.svg)](https://github.com/andresusanto/aws-elastic-search-demo/actions/workflows/build-ingester.yml)
 
