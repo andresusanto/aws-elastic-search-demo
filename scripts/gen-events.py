@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     num_success, num_error, total = 0, 0, 0
 
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
         users = [str(uuid4()) for _ in range(args.num_users)]
         futures = [executor.submit(_req, users[i % len(users)])
                    for i in range(args.num_events)]

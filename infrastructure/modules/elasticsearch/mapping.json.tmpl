@@ -1,0 +1,23 @@
+{
+  "template": "events_*",
+  "settings": {
+    "number_of_shards": ${index_shard_count}
+  },
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "user_id": {
+        "type": "keyword"
+      },
+      "type": {
+        "type": "keyword"
+      },
+      "created_at": {
+        "type": "date"
+      }
+    }
+  },
+  "aliases": {
+    "events": {}
+  }
+}
