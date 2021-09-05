@@ -3,7 +3,11 @@ import unittest
 from unittest.mock import patch
 
 
-class TestStringMethods(unittest.TestCase):
+class TestQuerier(unittest.TestCase):
+    def __init__(self, methodName):
+        super().__init__(methodName)
+        os.environ['REGION'] = 'unit-test'
+        os.environ['ES_HOST'] = 'http://unit-test'
 
     @patch('logging.Logger.info')
     @patch('elasticsearch.Elasticsearch.search')
@@ -33,9 +37,4 @@ class TestStringMethods(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    os.environ['REGION'] = 'unit-test'
-    os.environ['ES_HOST'] = 'http://unit-test'
     unittest.main()
-else:
-    print('please run unittest without "-m unittest"')
-    exit(1)

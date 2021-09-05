@@ -47,8 +47,4 @@ module "ingester" {
   depends_on = [
     module.alb
   ]
-
-  ### To use task credentials, below paramaters are required
-  # create_repository_credentials_iam_policy = false
-  # repository_credentials                   = aws_secretsmanager_secret.task_credentials.arn
 }
